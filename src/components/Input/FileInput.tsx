@@ -110,6 +110,7 @@ const FileInputBase: ForwardRefRenderFunction<
         setLocalImageUrl(URL.createObjectURL(event.target.files[0]));
       } catch (err) {
         if (err?.message === 'Cancelled image upload.') return;
+        console.log(err);
 
         toast({
           title: 'Falha no envio',

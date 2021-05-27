@@ -22,11 +22,32 @@ export function CardList({ cards }: CardsProps): JSX.Element {
 
   // TODO FUNCTION HANDLE VIEW IMAGE
 
+  const { isOpen, onClose, onOpen } = useDisclosure();
+
+  const [selectedImage, setSelectedImage] = useState('');
+
+  function handleViewImage(url: string): void {
+    setSelectedImage(url);
+    onOpen();
+  }
+
   return (
     <>
       {/* TODO CARD GRID */}
+      <SimpleGrid columns={3} spacing="40px">
+        {cards?.map(card => (
+          <Card key={card.id} data={card} viewImage={handleViewImage} />
+        ))}
+      </SimpleGrid>
 
       {/* TODO MODALVIEWIMAGE */}
+      {!!selectedImage && (
+        <ModalViewImage
+          imgUrl={selectedImage}
+          isOpen={isOpen}
+          onClose={onClose}
+        />
+      )}
     </>
   );
 }

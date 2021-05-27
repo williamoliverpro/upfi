@@ -386,5 +386,5 @@ describe('Home page', () => {
     ).toBeInTheDocument();
 
     expect(loadMoreButton).not.toBeInTheDocument();
-  });
+  }, 20000);
 });
